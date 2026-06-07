@@ -26,3 +26,15 @@ export interface NetworkTraffic {
   inbound: number;
   outbound: number;
 }
+
+export interface AlertRecord {
+  id: string;
+  serverId: string;
+  serverName: string;
+  metric: 'cpu' | 'memory' | 'disk' | 'network';
+  metricLabel: string;
+  value: number;
+  threshold: number;
+  timestamp: string;
+  timestampFull: string;
+}

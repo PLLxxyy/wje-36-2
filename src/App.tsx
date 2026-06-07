@@ -3,11 +3,12 @@ import MemoryGauge from './components/MemoryGauge';
 import DiskUsage from './components/DiskUsage';
 import NetworkChart from './components/NetworkChart';
 import ServerCards from './components/ServerCards';
+import AlertHistory from './components/AlertHistory';
 import { useServerData } from './hooks/useServerData';
 import { Server, Activity } from 'lucide-react';
 
 export default function App() {
-  const { servers, cpuHistory, networkTraffic, colors } = useServerData();
+  const { servers, cpuHistory, networkTraffic, alertHistory, colors } = useServerData();
   const onlineCount = servers.filter((s) => s.status !== 'offline').length;
   const warningCount = servers.filter((s) => s.status === 'warning').length;
 
@@ -63,6 +64,11 @@ export default function App() {
       {/* Bottom: Server Cards */}
       <div className="shrink-0">
         <ServerCards servers={servers} />
+      </div>
+
+      {/* Bottom: Alert History */}
+      <div className="shrink-0 h-60">
+        <AlertHistory alerts={alertHistory} />
       </div>
     </div>
   );
